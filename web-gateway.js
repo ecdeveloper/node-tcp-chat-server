@@ -9,7 +9,7 @@ var handleError = function (error) {
 };
 
 io.on('connection', function (socket) {
-	var tcp = net.connect({ port: 1337 });
+	var tcp = net.connect({ port: process.env.TCP_PORT || 1337 });
 
 	tcp.on('data', function (data) {
 		socket.emit('data', { data: data.toString() });
@@ -31,7 +31,7 @@ io.on('connection', function (socket) {
 	socket.on('error', handleError);
 });
 
-server.listen(3000);
+server.listen(process.env.WEB_PORT || 3000);
 app.get('/', function (req, res) {
 	fs.readFile('./index.html', function (err, data) {
 		res.send(data.toString())

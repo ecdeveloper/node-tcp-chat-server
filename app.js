@@ -85,6 +85,6 @@ net.createServer(function (socket) {
 		helper.dropClient(socket, broadcast);
 	});
 
-}).listen(1337);
+}).listen(process.env.TCP_PORT || 1337);
 
-console.log('Listening on port 1337...');
+console.log('Listening on port '+ process.env.TCP_PORT || 1337 +'...');
