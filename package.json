@@ -1,10 +1,14 @@
 {
-	"name": "tcp-chat-server",
-	"description": "A simple TCP chat server",
-	"author": "Evgheni Chiriliuc <ec.developer@gmail.com>",
-	"dependencies": {
-		"lodash": "2.x",
-		"shortid": "1.x.x"
-	},
-	"version": "0.0.1"
+  "name": "tcp-chat-server",
+  "description": "A simple TCP chat server",
+  "author": "Evgheni Chiriliuc <ec.developer@gmail.com>",
+  "dependencies": {
+    "lodash": "2.x",
+    "shortid": "1.x.x",
+    "socket.io": "^1.0.3"
+  },
+  "scripts": {
+    "start": "node app"
+  },
+  "version": "0.0.1"
 }
