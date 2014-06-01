@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<title>TCP chat web client</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<style type="text/css">
+		body {
+			color: #fff;
+		}
+
+		#txt {
+			background-color: #000;
+			color: green;
+		}
+
+		#inp {
+			background-color: #000;
+			border-color: green;
+			color: green;
+		}
+	</style>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			var socket = io.connect(window.location.hostname, {port: 1337});
+			socket.on('data', function (dataObj) {
+				var data = dataObj.data.replace(/\n=> /g, '');
+				data = data.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+				$('#txt').append(data);
+				document.getElementById('txt').scrollTop = document.getElementById('txt').scrollHeight;
+			});
+
+			$('#inp').on('keydown', function (e) {
+				if (e.keyCode === 13) {
+					socket.emit('data', { data: $('#inp').val() });
+					$('#inp').val('');
+				}
+			});
+		});
+	</script>
+</head>
+
+<body bgcolor="black">
+	<textarea id="txt" readonly rows=40 style="height: 80%; width: 100%"></textarea><br/>
+	=> <input type="text" id="inp" style="width: 50%";/>
+</body>
+</html>
