@@ -2,10 +2,10 @@ var _ = require('lodash');
 var net = require('net');
 var shortId = require('shortid');
 
-require('./web-gateway');
+require('./core/web-gateway');
 
-global.rooms = require('./rooms');
-var helper = require('./helpers');
+global.rooms = require('./core/rooms');
+var helper = require('./core/helpers');
 
 global.cmds = {
 	'/help': {handler: helper.printHelp, description: 'Prints help'},
