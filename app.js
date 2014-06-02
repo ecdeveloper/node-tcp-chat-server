@@ -18,7 +18,7 @@ global.cmds = {
 global.clients = [];
 
 net.createServer(function (socket) {
-	console.log('Incoming connection. Total clients: ', clients.length + 1);
+	console.log(new Date(), '> Incoming connection (', socket.address() ,'). Total clients: ', clients.length + 1);
 
 	var self = this;
 	socket.id = shortId.generate();
