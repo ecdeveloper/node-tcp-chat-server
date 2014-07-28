@@ -1,3 +1,5 @@
+// A simple web gateway. A web-based UI for interracting with chat.
+
 var fs = require('fs');
 var net = require('net');
 var app = require('express')();
@@ -8,6 +10,13 @@ var handleError = function (error) {
 	console.log('An error occured: ', error);
 };
 
+app.get('/', function (req, res) {
+	fs.readFile('./index.html', function (err, data) {
+		res.send(data.toString())
+	});
+});
+
+// Realtime. Sockets handling.
 io.on('connection', function (socket) {
 	var tcp = net.connect({ port: process.env.TCP_PORT || 1337 });
 
@@ -32,8 +41,3 @@ io.on('connection', function (socket) {
 });
 
 server.listen(process.env.WEB_PORT || 3000);
-app.get('/', function (req, res) {
-	fs.readFile('./index.html', function (err, data) {
-		res.send(data.toString())
-	});
-});

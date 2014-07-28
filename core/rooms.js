@@ -1,7 +1,10 @@
+// Rooms functionality (listing/joining/leaving rooms)
+
 var _ = require('lodash');
 var rooms = ['nodejs', 'ruby', 'c++', 'php'];
 
 module.exports = {
+	// Get a list of all active rooms
 	listRooms: function (socket, broadcast, args, callback) {
 		var output = ['Active rooms are:'];
 
@@ -15,6 +18,7 @@ module.exports = {
 		callback(output);
 	},
 
+	// Join a certain room
 	joinRoom: function (socket, broadcast, args, callback) {
 		var room = args[0];
 		var output = [];
@@ -40,6 +44,7 @@ module.exports = {
 		callback(output);
 	},
 
+	// Leave the room you're currently in
 	leaveRoom: function (socket, broadcast, args, callback) {
 		if (!socket.room) {
 			return callback('* You are not in any room');
