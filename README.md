@@ -22,7 +22,7 @@ npm start
 
 Usage
 =====
-When you have the server up and running you can access the web interfact (http://localhost:[PORT]/, default [PORT] is 3000). Also you can connect with telnet:
+When you have the server up and running you can access the web interface (http://localhost:[PORT]/, default [PORT] is 3000). Also you can connect with telnet:
 ```
 telnet 127.0.0.1 1337
 ```
